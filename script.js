@@ -84,6 +84,7 @@ var tekenSpeler = function(spelerX, spelerY) {
 };
 
 
+
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
  */
@@ -104,10 +105,15 @@ var beweegKogel = function() {
  * Kijkt wat de toetsen/muis etc zijn.
  * Updatet globale variabele spelerX en spelerY
  */
-var beweegSpeler = function() {
+var Beweegspeler= function(spelerX) {
+    if (keyCode === LEFT_ARROW){
+        spelerX= spelerX-5;
 
-};
-
+    }
+        else (keycode === RIGHT_ARROW){
+            spelerX= spelerX+10;
+        }
+}
 
 /**
  * Zoekt uit of de vijand is geraakt
