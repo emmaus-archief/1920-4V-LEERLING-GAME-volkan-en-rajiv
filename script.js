@@ -106,16 +106,16 @@ var beweegKogel = function() {
  * Updatet globale variabele spelerX en spelerY
  */
 var Beweegspeler= function(spelerX) {
-    if (keyCode === LEFT_ARROW){
-        spelerX= spelerX-5;
+    if (keyCode === LEFT_ARROW ){
+        spelerX= spelerX - 5;
 
     }
-        else (keycode === RIGHT_ARROW){
-            spelerX= spelerX+10;
+        else (keyCode === RIGHT_ARROW ){
+            spelerX= spelerX + 10;
         }
 }
 
-/**
+/**n3 
  * Zoekt uit of de vijand is geraakt
  * @returns {boolean} true als vijand is geraakt
  */
