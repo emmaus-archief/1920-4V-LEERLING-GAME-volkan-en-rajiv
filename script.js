@@ -105,12 +105,12 @@ var beweegKogel = function() {
  * Kijkt wat de toetsen/muis etc zijn.
  * Updatet globale variabele spelerX en spelerY
  */
-var beweegSpeler= function(spelerX) {
+var beweegSpeler= function (spelerX) {
     if (keyCode === LEFT_ARROW ){
         spelerX= spelerX - 5;
 
     }
-        else (keyCode === RIGHT_ARROW ){
+        else if (keyCode === RIGHT_ARROW ) {
             spelerX= spelerX + 10;
         }
 }
