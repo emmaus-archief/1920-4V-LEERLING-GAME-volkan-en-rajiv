@@ -87,7 +87,7 @@ var tekenKogel = function(x, y) {
 
 var tekenSpeler = function(spelerX, spelerY) {
   fill("white");
-  image(img, spelerX, spelerY, 75, 75);
+  image(img, spelerX, spelerY, 100, 100);
 };
 
 
@@ -114,12 +114,12 @@ var beweegKogel = function() {
  */
 var beweegSpeler= function () {
     if (keyCode === LEFT_ARROW ){
-        if(spelerX>45){
+        if(spelerX>24){
         spelerX= spelerX - 7;
         }
     }
         else if (keyCode === RIGHT_ARROW ) {        
-            if( spelerX<1230){
+            if( spelerX<1156){
          spelerX= spelerX + 7;
         }
     }
