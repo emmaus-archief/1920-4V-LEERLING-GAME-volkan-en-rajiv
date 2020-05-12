@@ -86,7 +86,6 @@ var tekenKogel = function(x, y) {
 
 
 var tekenSpeler = function(spelerX, spelerY) {
-  fill("white");
   image(img, spelerX, spelerY, 100, 100);
 };
 
