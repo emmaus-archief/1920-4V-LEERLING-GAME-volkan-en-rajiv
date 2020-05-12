@@ -114,6 +114,9 @@ var beweegSpeler= function () {
          
          spelerX= spelerX + 5;
         }
+        if(spelerX>25){
+            spelerX=spelerX-5;
+        }
 }
 
 /**n3 
