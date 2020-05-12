@@ -32,7 +32,7 @@ var vijandX = 0;   // x-positie van vijand
 var vijandY = 0;   // y-positie van vijand
 
 var score = 0; // aantal behaalde punten
-
+var img; // voor onze plaatjes
 
 
 
@@ -78,9 +78,16 @@ var tekenKogel = function(x, y) {
  * @param {number} x x-coördinaat
  * @param {number} y y-coördinaat
  */
+
+ function preload(){
+     img = loadImage('plaatjes/spaceship.jpg');
+ }
+
+
+
 var tekenSpeler = function(spelerX, spelerY) {
   fill("white");
-  ellipse(spelerX, spelerY, 50, 50);
+  image(img, spelerX, spelerY, 75, 75);
 };
 
 
