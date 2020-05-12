@@ -107,16 +107,15 @@ var beweegKogel = function() {
  */
 var beweegSpeler= function () {
     if (keyCode === LEFT_ARROW ){
+        if(spelerX>45){
         spelerX= spelerX - 5;
-
+        }
     }
         else if (keyCode === RIGHT_ARROW ) {        
-         
+            if( spelerX<1235){
          spelerX= spelerX + 5;
         }
-        if(spelerX>25){
-            spelerX=spelerX-5;
-        }
+    }
 }
 
 /**n3 
