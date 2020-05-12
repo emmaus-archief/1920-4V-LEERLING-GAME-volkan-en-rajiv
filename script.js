@@ -79,8 +79,8 @@ var tekenKogel = function(x, y) {
  * @param {number} y y-coördinaat
  */
 
- function preload(){
-     img = loadImage('plaatjes/spaceship2.png');
+ function preload(){  
+ img = loadImage('plaatjes/spaceship2.PNG');
  }
 
 
