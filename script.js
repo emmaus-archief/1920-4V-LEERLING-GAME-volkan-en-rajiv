@@ -112,7 +112,7 @@ var beweegSpeler= function () {
         }
     }
         else if (keyCode === RIGHT_ARROW ) {        
-            if( spelerX<1235){
+            if( spelerX<1230){
          spelerX= spelerX + 7;
         }
     }
