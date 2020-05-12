@@ -80,7 +80,7 @@ var tekenKogel = function(x, y) {
  */
 
  function preload(){
-     img = loadImage('plaatjes/spaceship.jpg');
+     img = loadImage('plaatjes/spaceship2.png');
  }
 
 
