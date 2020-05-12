@@ -111,8 +111,8 @@ var beweegSpeler= function () {
 
     }
         else if (keyCode === RIGHT_ARROW ) {        
-        
-         spelerX= spelerX + 5
+         
+         spelerX= spelerX + 5;
         }
 }
 
