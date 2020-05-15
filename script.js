@@ -96,6 +96,8 @@ var tekenSpeler = function(spelerX, spelerY) {
  * Updatet globale variabelen met positie van vijand of tegenspeler
  */
 var beweegVijand = function() {
+    vijandX= vijandX - 3;
+    vijandY= vijandY + 3;
     
 };
 
