@@ -64,7 +64,7 @@ var tekenVijand = function(vijandX, vijandY) {
     fill(0,0,0);
     while(vijandX<700){
        ellipse(vijandX,vijandY,40,40);
-       vijandX+=60
+       vijandX+=100
     };
 };
 
