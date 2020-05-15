@@ -63,7 +63,7 @@ var tekenVeld = function () {
 var tekenVijand = function(vijandX, vijandY) {
     fill(0,0,0);
     while(vijandX<700){
-       image(img2,vijandX,vijandY,40,40);
+       image(img2,vijandX,vijandY,180,100);
        vijandX+=100
     };
 };
