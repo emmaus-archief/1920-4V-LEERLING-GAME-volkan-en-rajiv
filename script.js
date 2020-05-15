@@ -33,7 +33,7 @@ var vijandY = 100;   // y-positie van vijand
 
 var score = 0; // aantal behaalde punten
 var img; // voor onze plaatjes
-
+var img2; // plaatje voor vijanden
 
 
 
@@ -59,10 +59,11 @@ var tekenVeld = function () {
 
 
 
+
 var tekenVijand = function(vijandX, vijandY) {
     fill(0,0,0);
     while(vijandX<700){
-       ellipse(vijandX,vijandY,40,40);
+       image(img2,vijandX,vijandY,40,40);
        vijandX+=100
     };
 };
@@ -87,6 +88,7 @@ var tekenKogel = function(x, y) {
 
 function preload(){  
  img = loadImage('plaatjes/spaceship2.PNG');
+ img2 = loadImage('plaatjes/alien.PNG');
  }
 
 
