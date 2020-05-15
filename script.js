@@ -33,7 +33,7 @@ var vijandY = 100;   // y-positie van vijand
 
 var score = 0; // aantal behaalde punten
 var img; // voor onze plaatjes
-
+var img2;
 
 
 
@@ -56,10 +56,15 @@ var tekenVeld = function () {
  * @param {number} x x-coördinaat
  * @param {number} y y-coördinaat
  */
+function preload(){  
+ img2 = loadImage('plaatjes/alien.PNG');
+ }
+
+
 var tekenVijand = function(vijandX, vijandY) {
     
-    fill(0,0,0);
-    ellipse(vijandX,vijandY,40,40);
+   
+    image(img2,vijandX,vijandY,40,40);
 
 };
 
