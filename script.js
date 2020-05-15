@@ -33,7 +33,7 @@ var vijandY = 100;   // y-positie van vijand
 
 var score = 0; // aantal behaalde punten
 var img; // voor onze plaatjes
-var img2;
+
 
 
 
@@ -56,16 +56,16 @@ var tekenVeld = function () {
  * @param {number} x x-coördinaat
  * @param {number} y y-coördinaat
  */
-function preload(){  
- img2 = loadImage('plaatjes/alien.PNG');
- }
+
 
 
 var tekenVijand = function(vijandX, vijandY) {
-    
-   
-    image(img2,vijandX,vijandY,40,40);
-
+    ellipse(,vijandX,vijandY,40,40);
+    fill(0,0,0);
+    while(vijandX<700){
+       ellipse(vijandX,vijandY,40,40);
+       vijandX+=60
+    };
 };
 
 
@@ -102,7 +102,7 @@ var tekenSpeler = function(spelerX, spelerY) {
  * Updatet globale variabelen met positie van vijand of tegenspeler
  */
 var beweegVijand = function() {
-    vijandX= vijandX - ((Math.random() * 5) + 1);
+    vijandX= vijandX - ((Math.random() * 7) + 1);
     vijandY= vijandY + ((Math.random() * 10) + 1);
     
 };
