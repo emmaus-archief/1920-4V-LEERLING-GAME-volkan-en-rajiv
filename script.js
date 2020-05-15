@@ -57,6 +57,7 @@ var tekenVeld = function () {
  * @param {number} y y-coördinaat
  */
 var tekenVijand = function(vijandX, vijandY) {
+    noStroke();
     fill(0,0,0);
     while(vijandX<700){
        ellipse(vijandX,vijandY,40,40);
