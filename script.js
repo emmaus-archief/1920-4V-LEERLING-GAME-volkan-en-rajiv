@@ -89,7 +89,7 @@ var tekenKogel = function(x, y) {
 function preload(){  
  img = loadImage('plaatjes/spaceship2.PNG');
  img2 = loadImage('plaatjes/alien.PNG');
- }
+ };
 
 
 
