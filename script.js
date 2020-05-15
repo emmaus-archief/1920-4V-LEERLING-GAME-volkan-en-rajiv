@@ -60,13 +60,7 @@ var tekenVeld = function () {
 
 
 var tekenVijand = function(vijandX, vijandY) {
-<<<<<<< HEAD
-    
-     fill(0,0,0);
-=======
-    ellipse(vijandX,vijandY,40,40);
     fill(0,0,0);
->>>>>>> ed7ff19258e2d97df8b51e1fadf308b37f4684af
     while(vijandX<700){
        ellipse(vijandX,vijandY,40,40);
        vijandX+=100
