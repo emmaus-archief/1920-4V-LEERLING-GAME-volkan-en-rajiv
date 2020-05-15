@@ -57,6 +57,7 @@ var tekenVeld = function () {
  * @param {number} y y-coördinaat
  */
 var tekenVijand = function(vijandX, vijandY) {
+    
     fill(0,0,0);
     ellipse(vijandX,vijandY,40,40);
 
@@ -96,8 +97,8 @@ var tekenSpeler = function(spelerX, spelerY) {
  * Updatet globale variabelen met positie van vijand of tegenspeler
  */
 var beweegVijand = function() {
-    vijandX= vijandX - 3;
-    vijandY= vijandY + 3;
+    vijandX= vijandX - ((Math.random() * 5) + 1);
+    vijandY= vijandY + ((Math.random() * 10) + 1);
     
 };
 
