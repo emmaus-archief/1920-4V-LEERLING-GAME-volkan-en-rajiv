@@ -35,7 +35,7 @@ var score = 0; // aantal behaalde punten
 var img; // voor onze plaatjes
 var img2; // plaatje voor vijanden
 
-
+var vijanden = [];
 
 /* ********************************************* */
 /*      functies die je gebruikt in je game      */
@@ -59,14 +59,11 @@ var tekenVeld = function () {
 
 
 
+ var tekenVijand = function(vijandX, vijandY) {
+     image(img2,vijandX,vijandY,180,100);
+        };
 
-var tekenVijand = function(vijandX, vijandY) {
-    fill(0,0,0);
-    while(vijandX<700){
-       image(img2,vijandX,vijandY,180,100);
-       vijandX+=100
-    };
-};
+    
 
 
 /**
@@ -102,9 +99,9 @@ var tekenSpeler = function(spelerX, spelerY) {
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
  */
-var beweegVijand = function() {
-    vijandX= vijandX - ((Math.random() * 7) + 1);
-    vijandY= vijandY + ((Math.random() * 10) + 1);
+ var beweegVijand = function() {
+  vijandX= vijandX - ((Math.random() * 7) + 1);
+   vijandY= vijandY + ((Math.random() * 10) + 1);
     
 };
 
@@ -130,7 +127,7 @@ var beweegSpeler= function () {
         else if (keyCode === RIGHT_ARROW ) {        
             if( spelerX<1156){
          spelerX= spelerX + 7;
-        }
+            }
     }
 }
 
@@ -165,6 +162,26 @@ var checkGameOver = function() {
 };
 
 
+  class Enemy{
+    constructor(x, y,  snelheid){
+       this.x = x;
+        this.y = y;
+        this.snelheid = snelheid;
+    }
+    drawAndMove = function(){
+        image(img2, this.x, this.y ,180,100);
+       this.y += this.snelheid;
+    }
+}
+const test = new Enemy(500, 50, 5);
+
+var genereerVijanden = function(){
+    for(var i = 0; i <= 5; i++){
+       vijanden[i] = new Enemy (random(50, 1200), random(50, 150), random(2, 7));
+    
+        
+    }
+}
 /**
  * setup
  * de code in deze functie wordt één keer uitgevoerd door
@@ -174,8 +191,9 @@ function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
 
-  // Kleur de achtergrond blauw, zodat je het kunt zien
-  background('blue');
+  
+
+  genereerVijanden();
 }
 
 
@@ -187,7 +205,10 @@ function setup() {
 function draw() {
   switch (spelStatus) {
     case SPELEN:
-      beweegVijand();
+    // Kleur de achtergrond blauw, zodat je het kunt zien
+     background('blue');
+
+     // beweegVijand();
       beweegKogel();
       beweegSpeler();
       
@@ -202,10 +223,13 @@ function draw() {
       }
 
       tekenVeld();
-      tekenVijand(vijandX, vijandY);
+     
       tekenKogel(kogelX, kogelY);
       tekenSpeler(spelerX, spelerY);
-
+      //tekenVijand(vijandX,vijandY)
+      for(var i = 0; i < vijanden.length; i++){
+            vijanden[i].drawAndMove();
+      }
       if (checkGameOver()) {
         spelStatus = GAMEOVER;
       }
