@@ -99,11 +99,30 @@ var tekenSpeler = function(spelerX, spelerY) {
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
  */
- var beweegVijand = function() {
-  vijandX= vijandX - ((Math.random() * 7) + 1);
-   vijandY= vijandY + ((Math.random() * 10) + 1);
+class Enemy{
+    constructor(x, y,  snelheid){
+       this.x = x;
+        this.y = y;
+        this.snelheid = snelheid;
+    }
+    drawAndMove = function(){
+        image(img2, this.x, this.y ,180,100);
+       this.y += this.snelheid;
+    }
+     isBuitenCanvas = function(){
+        if(this.y > 1280){
+            return true;
+        }
+    }
     
-};
+}
+const test = new Enemy(500, 50, 5);
+
+var genereerVijanden = function(){
+    for(var i = 0; i <= 6; i++){
+       vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
+    }
+}
 
 
 /**
@@ -162,26 +181,9 @@ var checkGameOver = function() {
 };
 
 
-  class Enemy{
-    constructor(x, y,  snelheid){
-       this.x = x;
-        this.y = y;
-        this.snelheid = snelheid;
-    }
-    drawAndMove = function(){
-        image(img2, this.x, this.y ,180,100);
-       this.y += this.snelheid;
-    }
-}
-const test = new Enemy(500, 50, 5);
-
-var genereerVijanden = function(){
-    for(var i = 0; i <= 5; i++){
-       vijanden[i] = new Enemy (random(50, 1200), random(50, 150), random(2, 7));
+  
     
-        
-    }
-}
+
 /**
  * setup
  * de code in deze functie wordt één keer uitgevoerd door
@@ -207,7 +209,6 @@ function draw() {
     case SPELEN:
     // Kleur de achtergrond blauw, zodat je het kunt zien
      background('blue');
-
      // beweegVijand();
       beweegKogel();
       beweegSpeler();
@@ -226,9 +227,12 @@ function draw() {
      
       tekenKogel(kogelX, kogelY);
       tekenSpeler(spelerX, spelerY);
-      //tekenVijand(vijandX,vijandY)
+     // tekenVijand(vijandX,vijandY)
       for(var i = 0; i < vijanden.length; i++){
             vijanden[i].drawAndMove();
+             if(vijanden[i].isBuitenCanvas()){
+               vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
+            }
       }
       if (checkGameOver()) {
         spelStatus = GAMEOVER;
