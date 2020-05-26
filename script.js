@@ -59,10 +59,6 @@ var tekenVeld = function () {
 
 
 
- var tekenVijand = function(vijandX, vijandY) {
-     image(img2,vijandX,vijandY,180,100);
-        };
-
     
 
 
@@ -105,10 +101,13 @@ class Enemy{
         this.y = y;
         this.snelheid = snelheid;
     }
+
     drawAndMove = function(){
         image(img2, this.x, this.y ,180,100);
        this.y += this.snelheid;
     }
+    
+    
      isBuitenCanvas = function(){
         if(this.y > 1280){
             return true;
@@ -116,7 +115,6 @@ class Enemy{
     }
     
 }
-const test = new Enemy(500, 50, 5);
 
 var genereerVijanden = function(){
     for(var i = 0; i <= 6; i++){
@@ -209,9 +207,8 @@ function draw() {
     case SPELEN:
     // Kleur de achtergrond blauw, zodat je het kunt zien
      background('blue');
-     //beweegVijand();
-      beweegKogel();
-      beweegSpeler();
+     beweegKogel();
+     beweegSpeler();
       
       if (checkVijandGeraakt()) {
         // punten erbij
@@ -223,11 +220,11 @@ function draw() {
         // eventueel: nieuwe speler maken
       }
 
+      
       tekenVeld();
-     
       tekenKogel(kogelX, kogelY);
       tekenSpeler(spelerX, spelerY);
-      //tekenVijanden(vijandX, vijandY)
+    
      for(var i = 0; i < vijanden.length; i++){
             vijanden[i].drawAndMove();
              if(vijanden[i].isBuitenCanvas()){
