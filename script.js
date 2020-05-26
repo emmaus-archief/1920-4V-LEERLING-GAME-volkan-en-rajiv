@@ -46,8 +46,7 @@ var vijanden = [];
  * Tekent het speelveld
  */
 var tekenVeld = function () {
-  fill("purple");
-  rect(20, 20, width - 2 * 20, height - 2 * 20);
+  rect(backGroundImage,20, 20, width - 2 * 20, height - 2 * 20);
 };
 
 
@@ -207,7 +206,7 @@ function draw() {
   switch (spelStatus) {
     case SPELEN:
     // Kleur de achtergrond blauw, zodat je het kunt zien
-     background('blue');
+     background(backGroundImage);
      beweegKogel();
      beweegSpeler();
       
