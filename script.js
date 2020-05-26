@@ -34,7 +34,7 @@ var vijandY = 100;   // y-positie van vijand
 var score = 0; // aantal behaalde punten
 var img; // voor onze plaatjes
 var img2; // plaatje voor vijanden
-
+var backGroundImage;
 var vijanden = [];
 
 /* ********************************************* */
