@@ -209,7 +209,7 @@ function draw() {
     case SPELEN:
     // Kleur de achtergrond blauw, zodat je het kunt zien
      background('blue');
-     // beweegVijand();
+     //beweegVijand();
       beweegKogel();
       beweegSpeler();
       
@@ -227,14 +227,16 @@ function draw() {
      
       tekenKogel(kogelX, kogelY);
       tekenSpeler(spelerX, spelerY);
-     // tekenVijand(vijandX,vijandY)
-      for(var i = 0; i < vijanden.length; i++){
+      //tekenVijanden(vijandX, vijandY)
+     for(var i = 0; i < vijanden.length; i++){
             vijanden[i].drawAndMove();
              if(vijanden[i].isBuitenCanvas()){
                vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
-            }
-      }
-      if (checkGameOver()) {
+             }
+            }      
+               
+               
+    if (checkGameOver()) {
         spelStatus = GAMEOVER;
       }
       break;
