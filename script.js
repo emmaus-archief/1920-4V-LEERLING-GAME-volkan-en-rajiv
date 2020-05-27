@@ -25,8 +25,7 @@ var spelStatus = SPELEN;
 var spelerX = 625; // x-positie van speler
 var spelerY = 600; // y-positie van speler
 
-var kogelX = 0;    // x-positie van kogel
-var kogelY = 0;    // y-positie van kogel
+
 
 var vijandX = 620;   // x-positie van vijand
 var vijandY = 100;   // y-positie van vijand
