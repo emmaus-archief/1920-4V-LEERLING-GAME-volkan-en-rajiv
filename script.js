@@ -36,6 +36,7 @@ var img; // voor onze plaatjes
 var img2; // plaatje voor vijanden
 var backGroundImage;
 var vijanden = [];
+var aantalVijanden = 6;
 
 /* ********************************************* */
 /*      functies die je gebruikt in je game      */
@@ -109,15 +110,17 @@ class Enemy{
     
     
      isBuitenCanvas = function(){
-        if(this.y > 1280){
+        if(this.y > 720){
             return true;
+        } else{
+            return false;
         }
     }
     
 }
 
 var genereerVijanden = function(){
-    for(var i = 0; i <= 6; i++){
+    for(var i = 0; i < aantalVijanden; i++){
        vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
     }
 }
@@ -205,6 +208,12 @@ function setup() {
 function draw() {
   switch (spelStatus) {
     case SPELEN:
+
+  
+     break;
+    
+    
+     
     // Kleur de achtergrond blauw, zodat je het kunt zien
      background(backGroundImage);
      beweegKogel();
@@ -224,15 +233,14 @@ function draw() {
       tekenVeld();
       tekenKogel(kogelX, kogelY);
       tekenSpeler(spelerX, spelerY);
-    
+    aantalVijanden ++;
      for(var i = 0; i < vijanden.length; i++){
             vijanden[i].drawAndMove();
              if(vijanden[i].isBuitenCanvas()){
                vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
              }
             }      
-               
-               
+                      
     if (checkGameOver()) {
         spelStatus = GAMEOVER;
       }
