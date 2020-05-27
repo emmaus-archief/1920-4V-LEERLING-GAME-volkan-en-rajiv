@@ -26,7 +26,8 @@ var spelerX = 625; // x-positie van speler
 var spelerY = 600; // y-positie van speler
 
 
-
+var stopwatchSec= 0;
+var stopwatchMin= 0;
 var vijandX = 620;   // x-positie van vijand
 var vijandY = 100;   // y-positie van vijand
 
@@ -66,10 +67,10 @@ var tekenVeld = function () {
  * @param {number} x x-coördinaat
  * @param {number} y y-coördinaat
  */
-var tekenKogel = function(x, y) {
+//var tekenKogel = function(x, y) {
 
 
-};
+//};
 
 
 /**
@@ -91,7 +92,14 @@ var tekenSpeler = function(spelerX, spelerY) {
 };
 
 
-
+function tekenTimer(){
+    var extraNul= ""
+    if(stopwatchSec<10){
+        extraNul= "0"
+    }
+    fill("white");
+   text(stopwatchMin + ":" + extraNul + stopwatchSec, 50,50,50,50);
+}
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
  */
@@ -128,9 +136,9 @@ var genereerVijanden = function(){
 /**
  * Updatet globale variabelen met positie van kogel of bal
  */
-var beweegKogel = function() {
+//var beweegKogel = function() {
 
-};
+//};
 
 
 /**
@@ -180,7 +188,13 @@ var checkGameOver = function() {
   return false;
 };
 
-
+function updateTimer(){
+    stopwatchSec++
+    if (stopwatchSec == 60){
+        stopwatchMin++;
+        stopwatchSec = 0;
+    }
+}
   
     
 
@@ -192,7 +206,7 @@ var checkGameOver = function() {
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
-
+  setInterval(updateTimer, 1000);
   
 
   genereerVijanden();
@@ -209,13 +223,13 @@ function draw() {
     case SPELEN:
 
   
-     break;
+     
     
     
      
     // Kleur de achtergrond blauw, zodat je het kunt zien
      background(backGroundImage);
-     beweegKogel();
+     //beweegKogel();
      beweegSpeler();
       
       if (checkVijandGeraakt()) {
@@ -230,8 +244,9 @@ function draw() {
 
       
       tekenVeld();
-      tekenKogel(kogelX, kogelY);
+      //tekenKogel(kogelX, kogelY);
       tekenSpeler(spelerX, spelerY);
+      tekenTimer();
     aantalVijanden ++;
      for(var i = 0; i < vijanden.length; i++){
             vijanden[i].drawAndMove();
