@@ -98,7 +98,7 @@ function tekenTimer(){
         extraNul= "0"
     }
     fill("white");
-   text(stopwatchMin + ":" + extraNul + stopwatchSec, 50,50,50,50);
+   text(stopwatchMin + ":" + extraNul + stopwatchSec, 50,50,200,200);
 }
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
