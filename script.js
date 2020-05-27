@@ -30,7 +30,8 @@ var stopwatchSec= 0;
 var stopwatchMin= 0;
 var vijandX = 620;   // x-positie van vijand
 var vijandY = 100;   // y-positie van vijand
-
+var speelKnopX= 50;
+var speelKnopY= 50;
 var score = 0; // aantal behaalde punten
 var img; // voor onze plaatjes
 var img2; // plaatje voor vijanden
@@ -57,7 +58,13 @@ var tekenVeld = function () {
  * @param {number} y y-coördinaat
  */
 
-
+var speelKnop= function(){
+    fill('white');
+    rect(speelKnopX,speelKnopY, 250,300);
+    textSize(25);
+    text('Start',50,60);
+    
+}
 
     
 
