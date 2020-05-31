@@ -156,7 +156,17 @@ var beweegSpeler= function () {
          spelerX= spelerX + 7;
             }
     }
-}
+    if (keyCode === UP_ARROW){
+        if(spelerY>725){
+          spelerY=spelerY + 10;
+        }
+    }
+      else if(keyCode === DOWN_ARROW) {
+          if (spelerY<0){
+              spelerY=spelerY - 10;
+          }
+      }
+    }
 
 /**n3 
  * Zoekt uit of de vijand is geraakt
@@ -174,6 +184,7 @@ var checkVijandGeraakt = function() {
  * @returns {boolean} true als speler is geraakt
  */
 var checkSpelerGeraakt= function(){
+
     
 }
 
