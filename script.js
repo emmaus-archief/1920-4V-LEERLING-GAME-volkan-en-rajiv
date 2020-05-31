@@ -20,7 +20,7 @@
 const UITLEG = 0;
 const SPELEN = 1;
 const GAMEOVER = 2;
-var spelStatus = SPELEN;
+var spelStatus = UITLEG;
 
 var spelerX = 625; // x-positie van speler
 var spelerY = 600; // y-positie van speler
@@ -36,8 +36,10 @@ var score = 0; // aantal behaalde punten
 var img; // voor onze plaatjes
 var img2; // plaatje voor vijanden
 var backGroundImage;
+var startScherm;
 var vijanden = [];
 var aantalVijanden = 6;
+var spelerR = 50;
 
 /* ********************************************* */
 /*      functies die je gebruikt in je game      */
@@ -47,6 +49,8 @@ var aantalVijanden = 6;
 /**
  * Tekent het speelveld
  */
+
+
 var tekenVeld = function () {
   rect(backGroundImage,20, 20, width - 2 * 20, height - 2 * 20);
 };
@@ -56,19 +60,6 @@ var tekenVeld = function () {
  * Tekent de vijand
  * @param {number} x x-coördinaat
  * @param {number} y y-coördinaat
- */
-
-var speelKnop= function(){
-    fill('white');
-    rect(speelKnopX,speelKnopY, 250,300);
-    textSize(25);
-    text('Start',50,60);
-    
-}
-
-    
-
-
 /**
  * Tekent de kogel of de bal
  * @param {number} x x-coördinaat
@@ -90,12 +81,13 @@ function preload(){
  img = loadImage('plaatjes/spaceship2.PNG');
  img2 = loadImage('plaatjes/alien.PNG');
  backGroundImage= loadImage('plaatjes/backgroundimage.png');
+ startScherm = loadImage('plaatjes/startschermspace.png');
  };
 
 
 
-var tekenSpeler = function(spelerX, spelerY) {
-  image(img, spelerX, spelerY, 100, 100);
+var tekenSpeler = function(spelerX, spelerY, spelerR) {
+  image(img, spelerX, spelerY, spelerR*2, spelerR*2);
 };
 
 
@@ -113,12 +105,13 @@ function tekenTimer(){
 class Enemy{
     constructor(x, y,  snelheid){
        this.x = x;
+       this.r= 100;
         this.y = y;
         this.snelheid = snelheid;
     }
 
     drawAndMove = function(){
-        image(img2, this.x, this.y ,180,100);
+        image(img2, this.x, this.y ,this.r+80 ,this.r);
        this.y += this.snelheid;
     }
     
@@ -180,11 +173,9 @@ var checkVijandGeraakt = function() {
  * bijvoorbeeld door botsing met vijand
  * @returns {boolean} true als speler is geraakt
  */
-var checkSpelerGeraakt = function() {
+var checkSpelerGeraakt= function(){
     
-  return false;
-};
-
+}
 
 /**
  * Zoekt uit of het spel is afgelopen
@@ -213,9 +204,7 @@ function updateTimer(){
 function setup() {
   // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
   createCanvas(1280, 720);
-  setInterval(updateTimer, 1000);
-  
-
+  setInterval(updateTimer, 1000); 
   genereerVijanden();
 }
 
@@ -227,14 +216,20 @@ function setup() {
  */
 function draw() {
   switch (spelStatus) {
+    case UITLEG:
+    background(startScherm);
+  
+
+    if(mouseIsPressed){
+        spelStatus = SPELEN;
+    }
+    break;
     case SPELEN:
 
-  
-     
-    
-    
+ 
      
     // Kleur de achtergrond blauw, zodat je het kunt zien
+   
      background(backGroundImage);
      //beweegKogel();
      beweegSpeler();
@@ -243,7 +238,7 @@ function draw() {
         // punten erbij
         // nieuwe vijand maken
       }
-      
+    
       if (checkSpelerGeraakt()) {
         // leven eraf of gezondheid verlagen
         // eventueel: nieuwe speler maken
@@ -251,8 +246,8 @@ function draw() {
 
       
       tekenVeld();
-      //tekenKogel(kogelX, kogelY);
-      tekenSpeler(spelerX, spelerY);
+      //tekenKogel(kogelX, kogelY)
+      tekenSpeler(spelerX, spelerY, spelerR);
       tekenTimer();
     aantalVijanden ++;
      for(var i = 0; i < vijanden.length; i++){
