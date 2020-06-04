@@ -85,7 +85,7 @@ function preload(){
  img = loadImage('plaatjes/spaceship2.PNG');
  img2 = loadImage('plaatjes/alien.PNG');
  backGroundImage= loadImage('plaatjes/backgroundimage.png');
- startScherm = loadImage('plaatjes/startschermspace.png');
+ startScherm = loadImage('plaatjes/startscherm 2.png');
  levensPlaatje = loadImage('plaatjes/health.PNG');
  };
 
@@ -100,7 +100,7 @@ function tekenTimer(){
     var extraNul= ""
     if(stopwatchSec<10){
         extraNul= "0"
-    }
+ }
     if(spelStatus === SPELEN){
     fill("white");
     text(stopwatchMin + ":" + extraNul + stopwatchSec, 50,50,100,100); 
@@ -110,6 +110,7 @@ function tekenTimer(){
        text(stopwatchMin + ":" + extraNul + stopwatchSec, 625,300,100,100);
    }
 }
+
 function tekenHP(){
     fill("red"); 
     textSize(50);
