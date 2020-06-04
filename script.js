@@ -1,4 +1,5 @@
-/// @ts-check
+// @ts-nocheck
+
 /// <reference path=".gitpod/p5.global-mode.d.ts" />
 "use strict";
 
@@ -37,9 +38,12 @@ var img; // voor onze plaatjes
 var img2; // plaatje voor vijanden
 var backGroundImage;
 var startScherm;
+var levensPlaatje;
 var vijanden = [];
 var aantalVijanden = 6;
 var spelerR = 50;
+var spelerH = 50;
+var spelerHP = 3;
 
 /* ********************************************* */
 /*      functies die je gebruikt in je game      */
@@ -82,12 +86,13 @@ function preload(){
  img2 = loadImage('plaatjes/alien.PNG');
  backGroundImage= loadImage('plaatjes/backgroundimage.png');
  startScherm = loadImage('plaatjes/startschermspace.png');
+ levensPlaatje = loadImage('plaatjes/health.PNG');
  };
 
 
 
 var tekenSpeler = function(spelerX, spelerY, spelerR) {
-  image(img, spelerX, spelerY, spelerR*2, spelerR*2);
+  image(img, spelerX, spelerY, spelerR*2, spelerH*2);
 };
 
 
@@ -97,7 +102,13 @@ function tekenTimer(){
         extraNul= "0"
     }
     fill("white");
-   text(stopwatchMin + ":" + extraNul + stopwatchSec, 50,50,200,200);
+   text(stopwatchMin + ":" + extraNul + stopwatchSec, 50,50,100,100); 
+}
+function tekenHP(){
+    fill("red"); 
+    textSize(50);
+    text(spelerHP.toString(), 1200, 700);
+    image(levensPlaatje,1150,650,60,60);
 }
 /**
  * Updatet globale variabelen met positie van vijand of tegenspeler
@@ -123,7 +134,14 @@ class Enemy{
             return false;
         }
     }
-    
+
+raaktSpeler = function(){
+         if(this.x  >= spelerX - this.r && this.x <= spelerX + spelerH && this.y >= spelerY && this.y <= spelerH + spelerY ){
+            return true;
+         }else{
+            return false;
+        }
+    }
 }
 
 var genereerVijanden = function(){
@@ -156,17 +174,7 @@ var beweegSpeler= function () {
          spelerX= spelerX + 7;
             }
     }
-    if (keyCode === UP_ARROW){
-        if(spelerY>725){
-          spelerY=spelerY + 10;
-        }
-    }
-      else if(keyCode === DOWN_ARROW) {
-          if (spelerY<0){
-              spelerY=spelerY - 10;
-          }
-      }
-    }
+} 
 
 /**n3 
  * Zoekt uit of de vijand is geraakt
@@ -177,26 +185,20 @@ var checkVijandGeraakt = function() {
   return false;
 };
 
+//var checkSpelerGeraakt = function(){
+   
 
-/**
- * Zoekt uit of de speler is geraakt
- * bijvoorbeeld door botsing met vijand
- * @returns {boolean} true als speler is geraakt
- */
-var checkSpelerGeraakt= function(){
-
-    
-}
-
-/**
- * Zoekt uit of het spel is afgelopen
- * @returns {boolean} true als het spel is afgelopen
- */
+ 
 var checkGameOver = function() {
-    
-  return false;
-};
-
+    if(spelerHP <= 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+      
+ 
+  
 function updateTimer(){
     stopwatchSec++
     if (stopwatchSec == 60){
@@ -217,6 +219,7 @@ function setup() {
   createCanvas(1280, 720);
   setInterval(updateTimer, 1000); 
   genereerVijanden();
+
 }
 
 
@@ -244,33 +247,43 @@ function draw() {
      background(backGroundImage);
      //beweegKogel();
      beweegSpeler();
+     
       
       if (checkVijandGeraakt()) {
         // punten erbij
         // nieuwe vijand maken
       }
     
-      if (checkSpelerGeraakt()) {
+    // if (checkSpelerGeraakt()) {
         // leven eraf of gezondheid verlagen
         // eventueel: nieuwe speler maken
-      }
+     // }
 
       
       tekenVeld();
       //tekenKogel(kogelX, kogelY)
       tekenSpeler(spelerX, spelerY, spelerR);
-      tekenTimer();
-    aantalVijanden ++;
-     for(var i = 0; i < vijanden.length; i++){
+      tekenTimer();  
+      tekenHP();
+      for(var i = 0; i < vijanden.length; i++){
             vijanden[i].drawAndMove();
              if(vijanden[i].isBuitenCanvas()){
                vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
              }
-            }      
-                      
-    if (checkGameOver()) {
-        spelStatus = GAMEOVER;
-      }
-      break;
+             if(vijanden[i].raaktSpeler()){
+                 spelerHP--;
+                 vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
+             }
+        } 
+     checkGameOver();             
+   if( checkGameOver()){
+     spelStatus = GAMEOVER;
+     background(0,0,255);
+     }
+    case GAMEOVER:
+    
+    break;
   }
-}
+ }
+
+
