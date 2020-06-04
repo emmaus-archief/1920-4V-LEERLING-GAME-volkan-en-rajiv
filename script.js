@@ -101,8 +101,14 @@ function tekenTimer(){
     if(stopwatchSec<10){
         extraNul= "0"
     }
+    if(spelStatus === SPELEN){
     fill("white");
-   text(stopwatchMin + ":" + extraNul + stopwatchSec, 50,50,100,100); 
+    text(stopwatchMin + ":" + extraNul + stopwatchSec, 50,50,100,100); 
+}
+   if(spelStatus === GAMEOVER){
+       fill("white");
+       text(stopwatchMin + ":" + extraNul + stopwatchSec, 625,300,100,100);
+   }
 }
 function tekenHP(){
     fill("red"); 
@@ -279,7 +285,10 @@ function draw() {
    if( checkGameOver()){
      spelStatus = GAMEOVER;
      background(0,0,255);
-     }
+     tekenTimer();
+     clearTimout();
+    
+    }
     case GAMEOVER:
     
     break;
