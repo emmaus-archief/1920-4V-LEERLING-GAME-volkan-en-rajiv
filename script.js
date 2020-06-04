@@ -23,19 +23,18 @@ const SPELEN = 1;
 const GAMEOVER = 2;
 var spelStatus = UITLEG;
 
-var spelerX = 625; // x-positie van speler
-var spelerY = 600; // y-positie van speler
+var spelerX = 625; 
+var spelerY = 600; 
 
 
 var stopwatchSec= 0;
 var stopwatchMin= 0;
-var vijandX = 620;   // x-positie van vijand
-var vijandY = 100;   // y-positie van vijand
+var vijandX = 620;  
+var vijandY = 100;   
 var speelKnopX= 50;
 var speelKnopY= 50;
-var score = 0; // aantal behaalde punten
-var img; // voor onze plaatjes
-var img2; // plaatje voor vijanden
+var img;
+var img2; 
 var backGroundImage;
 var startScherm;
 var levensPlaatje;
@@ -45,42 +44,16 @@ var spelerR = 50;
 var spelerH = 50;
 var spelerHP = 3;
 
-/* ********************************************* */
-/*      functies die je gebruikt in je game      */
-/* ********************************************* */
+ 
+ 
 
-
-/**
- * Tekent het speelveld
- */
-
-
+ 
 var tekenVeld = function () {
   rect(backGroundImage,20, 20, width - 2 * 20, height - 2 * 20);
 };
 
-
-/**
- * Tekent de vijand
- * @param {number} x x-coördinaat
- * @param {number} y y-coördinaat
-/**
- * Tekent de kogel of de bal
- * @param {number} x x-coördinaat
- * @param {number} y y-coördinaat
- */
-//var tekenKogel = function(x, y) {
-
-
-//};
-
-
-/**
- * Tekent de speler
- * @param {number} x x-coördinaat
- * @param {number} y y-coördinaat
- */
-
+  
+  
 function preload(){  
  img = loadImage('plaatjes/spaceship2.PNG');
  img2 = loadImage('plaatjes/alien.PNG');
@@ -117,9 +90,8 @@ function tekenHP(){
     text(spelerHP.toString(), 1200, 700);
     image(levensPlaatje,1150,650,60,60);
 }
-/**
- * Updatet globale variabelen met positie van vijand of tegenspeler
- */
+
+ 
 class Enemy{
     constructor(x, y,  snelheid){
        this.x = x;
@@ -158,19 +130,7 @@ var genereerVijanden = function(){
 }
 
 
-/**
- * Updatet globale variabelen met positie van kogel of bal
- */
-//var beweegKogel = function() {
-
-//};
-
-
-/**
- * Kijkt wat de toetsen/muis etc zijn.
- * Updatet globale variabele spelerX en spelerY
- */
-var beweegSpeler= function () {
+ var beweegSpeler= function () {
     if (keyCode === LEFT_ARROW ){
         if(spelerX>24){
         spelerX= spelerX - 7;
@@ -182,21 +142,9 @@ var beweegSpeler= function () {
             }
     }
 } 
-
-/**n3 
- * Zoekt uit of de vijand is geraakt
- * @returns {boolean} true als vijand is geraakt
- */
-var checkVijandGeraakt = function() {
-
-  return false;
-};
-
-//var checkSpelerGeraakt = function(){
-   
-
- 
-var checkGameOver = function() {
+    
+  
+ var checkGameOver = function() {
     if(spelerHP <= 0){
         return true;
     }else{
@@ -216,25 +164,16 @@ function updateTimer(){
   
     
 
-/**
- * setup
- * de code in deze functie wordt één keer uitgevoerd door
- * de p5 library, zodra het spel geladen is in de browser
- */
+
 function setup() {
-  // Maak een canvas (rechthoek) waarin je je speelveld kunt tekenen
-  createCanvas(1280, 720);
-  setInterval(updateTimer, 1000); 
-  genereerVijanden();
+createCanvas(1280, 720);
+setInterval(updateTimer, 1000); 
+genereerVijanden();
 
 }
 
 
-/**
- * draw
- * de code in deze functie wordt meerdere keren per seconde
- * uitgevoerd door de p5 library, nadat de setup functie klaar is
- */
+
 function draw() {
   switch (spelStatus) {
     case UITLEG:
@@ -247,28 +186,10 @@ function draw() {
     break;
     case SPELEN:
 
- 
+ background(backGroundImage);
+ beweegSpeler();
      
-    // Kleur de achtergrond blauw, zodat je het kunt zien
-   
-     background(backGroundImage);
-     //beweegKogel();
-     beweegSpeler();
-     
-      
-      if (checkVijandGeraakt()) {
-        // punten erbij
-        // nieuwe vijand maken
-      }
-    
-    // if (checkSpelerGeraakt()) {
-        // leven eraf of gezondheid verlagen
-        // eventueel: nieuwe speler maken
-     // }
-
-      
-      tekenVeld();
-      //tekenKogel(kogelX, kogelY)
+    tekenVeld();
       tekenSpeler(spelerX, spelerY, spelerR);
       tekenTimer();  
       tekenHP();
