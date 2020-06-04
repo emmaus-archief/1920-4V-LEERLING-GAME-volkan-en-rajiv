@@ -35,6 +35,7 @@ var speelKnopX= 50;
 var speelKnopY= 50;
 var img;
 var img2; 
+var gameOverScherm;
 var backGroundImage;
 var startScherm;
 var levensPlaatje;
@@ -60,6 +61,8 @@ function preload(){
  backGroundImage= loadImage('plaatjes/backgroundimage.png');
  startScherm = loadImage('plaatjes/startscherm 2.png');
  levensPlaatje = loadImage('plaatjes/health.PNG');
+ gameOverScherm = loadImage('plaatjes/Game over scherm.png');
+ 
  };
 
 
@@ -80,7 +83,7 @@ function tekenTimer(){
 }
    if(spelStatus === GAMEOVER){
        fill("white");
-       text(stopwatchMin + ":" + extraNul + stopwatchSec, 625,300,100,100);
+       text(stopwatchMin + ":" + extraNul + stopwatchSec, 690,380,100,100);
    }
 }
 
@@ -123,14 +126,28 @@ raaktSpeler = function(){
     }
 }
 
-var genereerVijanden = function(){
+function genereerVijanden(){
     for(var i = 0; i < aantalVijanden; i++){
        vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
     }
+    
+        
 }
 
+  function reSpawnVijand(){
+     for(var i = 0; i < vijanden.length; i++){
+            vijanden[i].drawAndMove();
+             if(vijanden[i].isBuitenCanvas()){
+               vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
+             }
+             if(vijanden[i].raaktSpeler()){
+                 spelerHP--;
+                 vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
+             }
+        } 
+ }
 
- var beweegSpeler= function () {
+ function beweegSpeler(){
     if (keyCode === LEFT_ARROW ){
         if(spelerX>24){
         spelerX= spelerX - 7;
@@ -144,7 +161,7 @@ var genereerVijanden = function(){
 } 
     
   
- var checkGameOver = function() {
+ function checkGameOver(){
     if(spelerHP <= 0){
         return true;
     }else{
@@ -188,33 +205,25 @@ function draw() {
 
  background(backGroundImage);
  beweegSpeler();
-     
+ reSpawnVijand();    
     tekenVeld();
       tekenSpeler(spelerX, spelerY, spelerR);
       tekenTimer();  
       tekenHP();
-      for(var i = 0; i < vijanden.length; i++){
-            vijanden[i].drawAndMove();
-             if(vijanden[i].isBuitenCanvas()){
-               vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
-             }
-             if(vijanden[i].raaktSpeler()){
-                 spelerHP--;
-                 vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
-             }
-        } 
-     checkGameOver();             
-   if( checkGameOver()){
+    checkGameOver();
+
+
+ if( checkGameOver()){
      spelStatus = GAMEOVER;
-     background(0,0,255);
+     background(gameOverScherm);
      tekenTimer();
      clearTimout();
     
-    }
+   }
     case GAMEOVER:
-    
-    break;
-  }
+    break; 
+
  }
+}
 
 
