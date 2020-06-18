@@ -34,7 +34,7 @@ var vijandY = 100;
 var speelKnopX= 50;
 var speelKnopY= 50;
 var spaceShip;
-var Alien; 
+var alien; 
 var gameOverScherm;
 var backGroundImage;
 var startScherm;
@@ -57,7 +57,7 @@ var tekenVeld = function () {
   
 function preload(){  
  spaceShip = loadImage('plaatjes/spaceship2.PNG');
- Alien = loadImage('plaatjes/alien.PNG');
+ alien = loadImage('plaatjes/alien.PNG');
  backGroundImage= loadImage('plaatjes/backgroundimage.png');
  startScherm = loadImage('plaatjes/startscherm 2.png');
  levensPlaatje = loadImage('plaatjes/health.PNG');
@@ -104,7 +104,7 @@ class Enemy{
     }
 
     drawAndMove = function(){
-        image(Alien, this.x, this.y ,this.r+80 ,this.r);
+        image(alien, this.x, this.y ,this.r+80 ,this.r);
        this.y += this.snelheid;
     }
     
