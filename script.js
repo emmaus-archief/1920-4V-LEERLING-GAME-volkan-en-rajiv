@@ -61,7 +61,7 @@ function preload(){
  backGroundImage= loadImage('plaatjes/backgroundimage.png');
  startScherm = loadImage('plaatjes/startscherm 2.png');
  levensPlaatje = loadImage('plaatjes/health.PNG');
- gameOverScherm = loadImage('plaatjes/Game over scherm.png');
+ gameOverScherm = loadImage('plaatjes/Game over scherm (1).png');
  
  };
 
@@ -167,7 +167,8 @@ function genereerVijanden(){
     }else{
         return false;
     }
-}
+ 
+    }
       
  
   
@@ -203,27 +204,23 @@ function draw() {
     break;
     case SPELEN:
 
- background(backGroundImage);
- beweegSpeler();
- reSpawnVijand();    
-    tekenVeld();
-      tekenSpeler(spelerX, spelerY, spelerR);
-      tekenTimer();  
-      tekenHP();
-    checkGameOver();
+background(backGroundImage);
+beweegSpeler();
+reSpawnVijand();    
+tekenVeld();
+tekenSpeler(spelerX, spelerY, spelerR);
+tekenTimer();  
+tekenHP();
+checkGameOver();       
 
-
+case GAMEOVER:
  if( checkGameOver()){
      spelStatus = GAMEOVER;
      background(gameOverScherm);
      tekenTimer();
-     clearTimout();
-    
-   }
-    case GAMEOVER:
-    break; 
-
+     clearTimout(); 
+    }
  }
-}
+  }
 
 
