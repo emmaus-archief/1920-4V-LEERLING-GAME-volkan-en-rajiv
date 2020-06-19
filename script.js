@@ -71,7 +71,7 @@ var tekenSpeler = function(spelerX, spelerY, spelerR) {
   image(spaceShip, spelerX, spelerY, spelerR*2, spelerH*2);
 };
 
-
+// Timer wordt getekend
 function tekenTimer(){
     var extraNul= ""
     if(stopwatchSec<10){
@@ -94,7 +94,7 @@ function tekenHP(){
     image(levensPlaatje,1150,650,60,60);
 }
 
- 
+ // Voor de vijanden dat ze random naar beneden vallen
 class Enemy{
     constructor(x, y,  snelheid){
        this.x = x;
@@ -102,7 +102,7 @@ class Enemy{
         this.y = y;
         this.snelheid = snelheid;
     }
-
+// de vijand wordt hier getekend en beweegt
     drawAndMove = function(){
         image(alien, this.x, this.y ,this.r+80 ,this.r);
        this.y += this.snelheid;
@@ -125,7 +125,7 @@ raaktSpeler = function(){
         }
     }
 }
-
+// Array om de vijanden random te laten in spawnen
 function genereerVijanden(){
     for(var i = 0; i < aantalVijanden; i++){
        vijanden[i] = new Enemy (random(20, 1100), random(20, 150), random(2, 7));
@@ -133,7 +133,7 @@ function genereerVijanden(){
     
         
 }
-
+// Als de vijand buiten het beeld is dat hij weer terugkomt boven in het scherm
   function reSpawnVijand(){
      for(var i = 0; i < vijanden.length; i++){
             vijanden[i].drawAndMove();
@@ -221,6 +221,6 @@ case GAMEOVER:
      clearTimout(); 
     }
  }
-  }
+}
 
 
